@@ -6,9 +6,7 @@ from logistic.models import Product, Stock, StockProduct
 class ProductSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Product
-		fields = '__all__'
-
-
+		fields = ['id', 'title', 'description']
 
 
 class ProductPositionSerializer(serializers.ModelSerializer):
@@ -35,7 +33,7 @@ class StockSerializer(serializers.ModelSerializer):
 		# в нашем случае: таблицу StockProduct
 		# с помощью списка positions
 		for position in positions:
-			StockProduct.objects.create(stock=stock, **position)
+			StockProduct.objects.create(stock = stock, **position)
 
 		return stock
 
@@ -51,6 +49,6 @@ class StockSerializer(serializers.ModelSerializer):
 		# с помощью списка positions
 		if positions is not None:
 			for position in positions:
-				StockProduct.objects.create(stock=stock, **position)
+				StockProduct.objects.create(stock = stock, **position)
 
 		return stock
